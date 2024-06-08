@@ -6,6 +6,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+// GetAllTodoItems is a function to get all to-do items data from database
+// @Summary Get all to-do
+// @Description Get all to-do items
+// @Tags to-doItems
+// @Accept json
+// @Produce json
+// @Success 200 {object} ResponseHTTP{data=[]models.TodoItem}
+// @Failure 503 {object} ResponseHTTP{}
+// @Router /api/todo [get]
 func GetAllTodoItems(c *fiber.Ctx) error {
 	db := database.DB
 	var todoItems []model.TodoItem

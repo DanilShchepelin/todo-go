@@ -25,4 +25,4 @@ app_down:
 
 # Пересобрать контейнер
 app_build:
-	sudo chmod -R 777 ./data && docker compose build
+	docker compose build

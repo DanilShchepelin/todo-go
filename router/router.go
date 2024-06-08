@@ -12,4 +12,10 @@ func SetupRouters(app *fiber.App) {
 
 	system := api.Group("/system", logger.New())
 	system.Get("/", controller.MainInfo)
+
+	todoItems := api.Group("/todo", logger.New())
+	todoItems.Get("/", controller.GetAllTodoItems)
+	todoItems.Get("/:id", controller.GetTodoItemById)
+	todoItems.Post("/", controller.CreateTodoItem)
+	todoItems.Delete("/:id", controller.DeleteTodoItem)
 }

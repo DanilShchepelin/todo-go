@@ -1,6 +1,7 @@
 package main
 
 import (
+	"awesomeProject/database"
 	"awesomeProject/router"
 	"github.com/gofiber/fiber/v2"
 	"log"
@@ -13,6 +14,8 @@ func main() {
 		CaseSensitive: true,
 		ServerHeader:  "Fiber",
 	})
+
+	database.ConnectDB()
 
 	router.SetupRouters(app)
 

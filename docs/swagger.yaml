@@ -1,4 +1,84 @@
+definitions:
+  model.TodoItem:
+    properties:
+      createdAt:
+        type: string
+      deletedAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      updatedAt:
+        type: string
+    type: object
 info:
   contact: {}
-paths: {}
+  description: Тестовое приложение для списка заданий
+  title: Список заданий
+  version: "1.0"
+paths:
+  /api/todo:
+    get:
+      consumes:
+      - application/json
+      description: Получить список элементов
+      produces:
+      - application/json
+      responses: {}
+      summary: Получить список элементов
+      tags:
+      - TodoItems
+    post:
+      consumes:
+      - application/json
+      description: Создать элемент
+      parameters:
+      - description: Данные для создания нового элемента
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/model.TodoItem'
+      produces:
+      - application/json
+      responses: {}
+      summary: Создать элемент
+      tags:
+      - TodoItems
+  /api/todo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Удалить элемент
+      parameters:
+      - description: TodoItem ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Удалить элемент
+      tags:
+      - TodoItems
+    get:
+      consumes:
+      - application/json
+      description: Получить элемент по id
+      parameters:
+      - description: TodoItem ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Получить элемент по id
+      tags:
+      - TodoItems
 swagger: "2.0"

@@ -6,15 +6,13 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// GetAllTodoItems is a function to get all to-do items data from database
-// @Summary Get all to-do
-// @Description Get all to-do items
-// @Tags to-doItems
-// @Accept json
-// @Produce json
-// @Success 200 {object} ResponseHTTP{data=[]models.TodoItem}
-// @Failure 503 {object} ResponseHTTP{}
-// @Router /api/todo [get]
+// GetAllTodoItems Получить список элементов
+//	@Summary		Получить список элементов
+//	@Description	Получить список элементов
+//	@Tags			TodoItems
+//	@Accept			json
+//	@Produce		json
+//	@Router			/api/todo [get]
 func GetAllTodoItems(c *fiber.Ctx) error {
 	db := database.DB
 	var todoItems []model.TodoItem
@@ -22,6 +20,14 @@ func GetAllTodoItems(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "message": "All todo items", "data": todoItems})
 }
 
+// GetTodoItemById Получить элемент по id
+//	@Summary		Получить элемент по id
+//	@Description	Получить элемент по id
+//	@Tags			TodoItems
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path	int	true	"TodoItem ID"
+//	@Router			/api/todo/{id} [get]
 func GetTodoItemById(c *fiber.Ctx) error {
 	db := database.DB
 	var todoItem model.TodoItem
@@ -29,6 +35,14 @@ func GetTodoItemById(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "message": "Todo item by ID", "data": todoItem})
 }
 
+// CreateTodoItem Создать элемент
+//	@Summary		Создать элемент
+//	@Description	Создать элемент
+//	@Tags			TodoItems
+//	@Accept			json
+//	@Produce		json
+//	@Param			request	body model.TodoItem	true	"Данные для создания нового элемента"
+//	@Router			/api/todo [post]
 func CreateTodoItem(c *fiber.Ctx) error {
 	db := database.DB
 	var todoItem = new(model.TodoItem)
@@ -40,6 +54,14 @@ func CreateTodoItem(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "message": "Created todo item", "data": todoItem})
 }
 
+// DeleteTodoItem Удалить элемент
+//	@Summary		Удалить элемент
+//	@Description	Удалить элемент
+//	@Tags			TodoItems
+//	@Accept			json
+//	@Produce		json
+//	@Param			id	path	int	true	"TodoItem ID"
+//	@Router			/api/todo/{id} [delete]
 func DeleteTodoItem(c *fiber.Ctx) error {
 	db := database.DB
 

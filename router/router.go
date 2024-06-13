@@ -18,4 +18,10 @@ func SetupRouters(app *fiber.App) {
 	todoItems.Get("/:id", controller.GetTodoItemById)
 	todoItems.Post("/", controller.CreateTodoItem)
 	todoItems.Delete("/:id", controller.DeleteTodoItem)
+
+	users := api.Group("/users", logger.New())
+	users.Get("/", controller.GetAllUsers)
+	users.Get("/:id", controller.GetUserById)
+	users.Post("/", controller.CreateUser)
+	users.Delete("/:id", controller.DeleteUser)
 }
